@@ -31,6 +31,8 @@ class DiarizationPipeline:
         diarize_df['end'] = diarize_df['segment'].apply(lambda x: x.end)
 
         if(return_embeddings):
+            speakers = diarize_df['speaker'].unique()
+            embeddings = {speaker: emb for speaker, emb in zip(speakers, embeddings)}
             return diarize_df, embeddings
         return diarize_df
 
